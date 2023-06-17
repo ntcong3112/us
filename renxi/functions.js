@@ -40,7 +40,7 @@ function timeElapse(date, isFormat){
 	dayjs.extend(minMax);
 	dayjs.extend(isBetween);
 	var dateNow = dayjs();
-	var start = dayjs('06/11/2023 00:00:00');
+	var start = dayjs('06/11/2023 22:00:00');
 	var month =  dateNow.diff(start, 'month')
 
 	var afterAddMonths = start.add(month, 'month')
