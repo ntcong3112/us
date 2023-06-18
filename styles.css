@@ -129,3 +129,10 @@
     top:5px;
     left: 150px;
 }
+
+@font-face {
+	font-family: 'MyFontFamily';
+	 src: url("fonts/IndieFlower-Regular.ttf") format('woff'), 
+	 url("fonts/IndieFlower-Regular.ttf")  format('truetype');
+  }
+
