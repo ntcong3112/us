@@ -34,7 +34,7 @@ $(window).resize(function() {
 })(jQuery);
 
 function timeElapse(date, isFormat){
-	
+
 	var minMax = window.dayjs_plugin_minMax;
 	var isBetween = window.dayjs_plugin_isBetween;
 	dayjs.extend(minMax);
