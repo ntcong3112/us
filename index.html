@@ -50,26 +50,9 @@
             <div id="code">
                 <font color="#0000FF" id="tamsutuoihong"
                     style="font-family: 'MyFontFamily', cursive; color: #283a44;font-weight: bold">
-                    <span class=" say">Hi my little princess <3 ^^ </span><br>
-                            <span class="say"> </span><br>
-                            <span class="say">Thuc ra thi anh voi em cung cha quan tam rang </span><br>
-                            <span class="say">minh yeu nhau duoc bao lau rui dung hem .-. </span><br>
-                            <span class="say"> </span><br>
-                            <span class="say">Quan trong la minh van se mai yeu nhau</span><br>
-                            <span class="say">bang tat ca nhung gi minh co em nhiii?</span><br>
-                            <span class="say"> </span><br>
-                            <span class="say">Love youuu <3 </span><br>
-                                    <span class="say">Hihihihiih </span><br>
-                                    <span class="say"> </span><br>
-                                    <span class="say">11/06/2023 ... </span><br>
-                                    <span class="say"> </span><br>
-                                    <span class="say">-- From your sweet pilot with love --</span><br>
-                                    <span class="say"> </span><br>
-
+                  
                 </font>
-                </p>
             </div>
-
         </div>
 
         <div id="clock-box" onclick="changeDateTimeFormat()">
@@ -84,7 +67,7 @@
 
 
     <div class="wrap1" style="margin-left: auto; margin-right: auto; width: 100%; min-width: 1100px;">
-        <div class="cube">
+        <div class="cube" id="cubebox">
             <div class="out_front">
                 <img src="img/9.jpg" class="pic" />
             </div>
@@ -96,16 +79,6 @@
             <div class="out_left">
                 <img src="img/8.jpg" class="pic" />
             </div>
-            <div class="out_right">
-                <img src="img/4.jpg" class="pic" />
-            </div>
-            <div class="out_top">
-                <img src="img/5.jpg" class="pic" />
-            </div>
-            <div class="out_bottom">
-                <img src="img/6.jpg" class="pic" />
-            </div>
-
             <span class="in_front">
                 <img src="img/7.jpg" class="in_pic" />
             </span>
@@ -124,13 +97,24 @@
             <span class="in_bottom">
                 <img src="img/12.jpg" class="in_pic" />
             </span>
+            <div class="out_right">
+                <img src="img/4.jpg" class="pic" />
+            </div>
+            <div class="out_top">
+                <img src="img/5.jpg" class="pic" />
+            </div>
+            <div class="out_bottom">
+                <img src="img/6.jpg" class="pic" />
+            </div>
+
+       
         </div>
     </div>
 
     <div class="wrap2">
         <div data-vc-full-width="true" data-vc-full-width-init="true"
             class="vc_row wpb_row vc_row-fluid vc_custom_1542873226451 vc_row-has-fill wgl-row-animation"
-            style="left: -11.2px; box-sizing: border-box; width: 1002px; padding-left: 11.2px; padding-right: 10.8px; position: relative;">
+            style="left: -11.2px; box-sizing: border-box; width: 1100px; padding-left: 11.2px; padding-right: 10.8px; position: relative;">
             <div
                 class="wpb_column vc_column_container vc_col-sm-12 vc_col-lg-offset-3 vc_col-lg-6 vc_col-md-offset-2 vc_col-md-8">
                 <div class="vc_column-inner ">
@@ -163,7 +147,7 @@
                         </div>
                         <div class="seofy_module_time_line_vertical appear_anim" id="time_line_item_list">
 
-                          
+
 
                         </div>
                         <div id="seofy_spacer_5cf90ca8190c4" class="seofy_module_spacing responsive_active">
@@ -177,13 +161,7 @@
                 style="top: 0%; left: 0%; transform: translateY(-50px); transition: transform 0s linear 0s; will-change: transform;"
                 data-paroller-direction="vertical" data-paroller-factor="-0.079"><img
                     src="https://seofy.wgl-demo.net/wp-content/uploads/2018/11/section_timeline2.png" alt=""></div>
-            <div id="particles_5cf90ca81976a" class="particles-js" style="top:0%; left:0%; width:30%; height:100%; "
-                data-particles-type="hexagons" data-particles-number="30" data-particles-color="#ff7e00,#3224e9,#69e9f2"
-                data-particles-line="false" data-particles-size="10" data-particles-speed="1"
-                data-particles-hover="true" data-particles-hover-mode="grab" data-particles-colors-type="random_colors">
-                <canvas class="particles-js-canvas-el" width="376" height="1636"
-                    style="width: 100%; height: 100%;"></canvas>
-            </div>
+        
         </div>
 
 
@@ -195,8 +173,8 @@
     <script>
     </script>
 
-    <script>
-
+    <script defer>
+  
 
         var isFormat = true;
         function changeDateTimeFormat() {
@@ -334,7 +312,7 @@
                 together.setMinutes(0);
                 together.setSeconds(0);
                 together.setMilliseconds(0);
-
+                console.log($("#code"))
                 $("#code").show().typewriter();
                 $("#clock-box").fadeIn(500);
                 while (true) {
@@ -368,198 +346,16 @@
     min-width: 1100px;">
         <p>augustine <3 tryn</p>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <!-- partial -->
-
+    <div id="fullpage" onclick="this.style.display='none';">
+        <div id="closeBtn" onclick="closeFullScreen()">
+            
+        </div>
+    </div>
 </body>
 
 
-<script>
+<script defer src="script.js">
 
-
-
-    const getImage = async () => {
-        const response = await axios.get('https://memory-backend-3g95.onrender.com/api/memories?populate=*&sort=Date:desc')
-        const data = response.data.data
-        console.log(data)
-
-        const colorList = [{ color: '#ffa705', class: "time_line_5cf90ca818f641" }, { color: '#3224e9', class: "time_line_5cf90ca818ffe5" }, { color: '#12affe', class: "time_line_5cf90ca818fe44" }, { color: '#69e9f2', class: "time_line_5cf90ca818fc83" }, { color: '#ff5600', class: "time_line_5cf90ca818fa82" }]
-        const display = data.map((memory, index) => {
-            const color = colorList[Math.floor(Math.random() * colorList.length)];
-       
-            return `
-            <div id=${color.class} class="time_line-item item_show  ${index === 0 ? 'item_active' : ''}">
-    <div class="time_line-date_wrap">
-        <div class="seofy_hexagon"><svg style=" fill: ${color.color};" xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 177.4 197.4">
-                <path
-                    d="M0,58.4v79.9c0,6.5,3.5,12.6,9.2,15.8l70.5,40.2c5.6,3.2,12.4,3.2,18,0l70.5-40.2c5.7-3.2,9.2-9.3,9.2-15.8V58.4 c0-6.5-3.5-12.6-9.2-15.8L97.7,2.4c-5.6-3.2-12.4-3.2-18,0L9.2,42.5C3.5,45.8,0,51.8,0,58.4z">
-                </path>
-            </svg></div>
-        <div class="seofy_hexagon"><svg style="filter: drop-shadow(4px 5px 4px  ${color.color}); fill: ${color.color};"
-                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 177.4 197.4">
-                <path
-                    d="M0,58.4v79.9c0,6.5,3.5,12.6,9.2,15.8l70.5,40.2c5.6,3.2,12.4,3.2,18,0l70.5-40.2c5.7-3.2,9.2-9.3,9.2-15.8V58.4 c0-6.5-3.5-12.6-9.2-15.8L97.7,2.4c-5.6-3.2-12.4-3.2-18,0L9.2,42.5C3.5,45.8,0,51.8,0,58.4z">
-                </path>
-            </svg></div>
-        <h4 class="time_line-date">${dayjs(memory.attributes.Date).format('DD/MM/YYYY')}</h4>
-    </div>
-    <div class="time_line-content">
-        <h4 class="time_line-title">${memory.attributes.Title} </h4>
-        <h5 style="margin-top:10px">(${dayjs(memory.attributes.Date).format('DD/MM/YYYY')}) </h5>
-
-        <div class="time_line-descr">${memory.attributes.Detail} </div>
-
-        <br />
-        <div class="slider slider${index}">
-            <div class="slide_viewer">
-                <div class="slide_group slide_group${index}">
-                    ${memory.attributes.ImagesAndVideo.data.map(d => `<div class="slide slide${index}"><img
-                            src="${d.attributes.formats.large.url}" /> </div>`).join('')}
-                </div>
-            </div>
-        </div>
-
-        <div class="slide_buttons slide_buttons${index}">
-        </div>
-
-        <div class="directional_nav">
-            <div class="previous_btn previous_btn${index}" title="Previous">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                    y="0px" width="35px" height="35px" viewBox="-11 -11.5 65 66">
-                    <g>
-                        <g>
-                            <path fill="#474544"
-                                d="M-10.5,22.118C-10.5,4.132,4.133-10.5,22.118-10.5S54.736,4.132,54.736,22.118
-			c0,17.985-14.633,32.618-32.618,32.618S-10.5,40.103-10.5,22.118z M-8.288,22.118c0,16.766,13.639,30.406,30.406,30.406 c16.765,0,30.405-13.641,30.405-30.406c0-16.766-13.641-30.406-30.405-30.406C5.35-8.288-8.288,5.352-8.288,22.118z" />
-                            <path fill="#474544"
-                                d="M25.43,33.243L14.628,22.429c-0.433-0.432-0.433-1.132,0-1.564L25.43,10.051c0.432-0.432,1.132-0.432,1.563,0	c0.431,0.431,0.431,1.132,0,1.564L16.972,21.647l10.021,10.035c0.432,0.433,0.432,1.134,0,1.564	c-0.215,0.218-0.498,0.323-0.78,0.323C25.929,33.569,25.646,33.464,25.43,33.243z" />
-                        </g>
-                    </g>
-                </svg>
-            </div>
-            <div class="next_btn next_btn${index}" title="Next">
-                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                    y="0px" width="35px" height="35px" viewBox="-11 -11.5 65 66">
-                    <g>
-                        <g>
-                            <path fill="#474544"
-                                d="M22.118,54.736C4.132,54.736-10.5,40.103-10.5,22.118C-10.5,4.132,4.132-10.5,22.118-10.5	c17.985,0,32.618,14.632,32.618,32.618C54.736,40.103,40.103,54.736,22.118,54.736z M22.118-8.288	c-16.765,0-30.406,13.64-30.406,30.406c0,16.766,13.641,30.406,30.406,30.406c16.768,0,30.406-13.641,30.406-30.406 C52.524,5.352,38.885-8.288,22.118-8.288z" />
-                            <path fill="#474544"
-                                d="M18.022,33.569c 0.282,0-0.566-0.105-0.781-0.323c-0.432-0.431-0.432-1.132,0-1.564l10.022-10.035 			L17.241,11.615c 0.431-0.432-0.431-1.133,0-1.564c0.432-0.432,1.132-0.432,1.564,0l10.803,10.814c0.433,0.432,0.433,1.132,0,1.564 L18.805,33.243C18.59,33.464,18.306,33.569,18.022,33.569z" />
-                        </g>
-                    </g>
-                </svg>
-            </div>
-        </div>
-    </div>
-</div>
-            `
-        })
-        const element = document.getElementById('time_line_item_list')
-        element.innerHTML = display.join('')
-        const currentIndex = data.map(d => 0)
-        const groupList = {}
-
-        console.log(currentIndex)
-        data.map((d, index) => {
-            $(`.slider${index}`).each(function () {
-                let $this = $(this);
-                let $group = $this.find(`.slide_group${index}`);
-                console.log($group)
-                let $slides = $this.find(`.slide${index}`);
-                console.log($slides)
-                let bulletArray = [];
-
-                let timeout;
-
-                function move(newIndex) {
-                    let animateLeft, slideLeft;
-
-                    advance();
-
-                    if ($group.is(':animated') || currentIndex[index] === newIndex) {
-                        return;
-                    }
-                    bulletArray[currentIndex[index]].removeClass('active');
-                    bulletArray[newIndex].addClass('active');
-
-                    if (newIndex > currentIndex[index]) {
-                        slideLeft = '100%';
-                        animateLeft = '-100%';
-                    } else {
-                        slideLeft = '-100%';
-                        animateLeft = '100%';
-                    }
-
-                    $slides.eq(newIndex).css({
-                        display: 'block',
-                        left: slideLeft
-                    });
-                    $group.animate({
-                        left: animateLeft
-                    }, function () {
-                        $slides.eq(currentIndex[index]).css({
-                            display: 'none'
-                        });
-                        $slides.eq(newIndex).css({
-                            left: 0
-                        });
-                        $group.css({
-                            left: 0
-                        });
-                        currentIndex[index] = newIndex;
-                    });
-                }
-
-                function advance() {
-                    clearTimeout(timeout);
-                    timeout = setTimeout(function () {
-                        if (currentIndex[index] < ($slides.length - 1)) {
-                            move(currentIndex[index] + 1);
-                        } else {
-                            move(0);
-                        }
-                    }, 4000);
-                }
-
-                $(`.next_btn${index}`).on('click', function () {
-                    if (currentIndex[index] < ($slides.length - 1)) {
-                        move(currentIndex[index] + 1);
-                    } else {
-                        move(0);
-                    }
-                });
-
-                $(`.previous_btn${index}`).on('click', function () {
-                    if (currentIndex[index] !== 0) {
-                        move(currentIndex[index] - 1);
-                    } else {
-                        move($slides.length - 1);
-                    }
-                });
-
-                $.each($slides, function (index1) {
-                    var $button = $('<a class="slide_btn">&bull;</a>');
-
-                    if (index1 === currentIndex[index]) {
-                        $button.addClass('active');
-                    }
-                    $button.on('click', function () {
-                        move(index1);
-                    }).appendTo(`.slide_buttons${index}`);
-
-                    bulletArray.push($button);
-                    console.log(bulletArray)
-                });
-
-                advance();
-            });
-        })
-
-    }
-
-    getImage();
 
 
 
