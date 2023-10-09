@@ -1,3 +1,6 @@
+var audio = document.getElementById("abcdef");
+  audio.volume = 0.3;
+
 const fullPage = document.querySelector('#fullpage');
 const body = document.body;
 function showFullDetail(index) {
