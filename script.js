@@ -121,11 +121,12 @@ const getImage = async () => {
                 ${memory.attributes?.ImagesAndVideo?.data?.map(d => {
 
                     const media = d.attributes.provider_metadata.resource_type === 'video' ? `
-                    <video>
+                    <video controls style="
+                   ">
                 <source src="${d.attributes.url}" type=${d.attributes.mime}>
                 </video>
 
-                    ` : `<img src="${d.attributes.url}" /> `
+                    ` : `<img style="cursor: pointer;" src="${d.attributes.url}" /> `
 
                     return `<div class="slide slide${index}">
                     ${media}
@@ -142,7 +143,7 @@ const getImage = async () => {
     <div class="directional_nav">
         <div class="previous_btn previous_btn${index}" title="Previous">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                y="0px" width="35px" height="35px" viewBox="-11 -11.5 65 66">
+                y="0px" width="22px" height="22px" viewBox="-11 -11.5 65 66">
                 <g>
                     <g>
                         <path fill="#474544"
@@ -154,9 +155,9 @@ const getImage = async () => {
                 </g>
             </svg>
         </div>
-        <div class="next_btn next_btn${index}" title="Next">
+        <div class="next_btn next_btn${index}" title="Next"> 
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-                y="0px" width="35px" height="35px" viewBox="-11 -11.5 65 66">
+                y="0px" width="22px" height="22px" viewBox="-11 -11.5 65 66">
                 <g>
                     <g>
                         <path fill="#474544"
@@ -177,7 +178,11 @@ const getImage = async () => {
     const element = document.getElementById('time_line_item_list')
     element.innerHTML = display.join('')
     const currentIndex = data.map(d => 0)
-
+    Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
+        get: function(){
+            return !!(this.currentTime > 0 && !this.paused && !this.ended && this.readyState > 2 && !this.full);
+        }
+    })
     data.map((d, index) => {
         $(`.slider${index}`).each(function () {
             let $this = $(this);
@@ -187,9 +192,20 @@ const getImage = async () => {
             console.log($slides)
             let bulletArray = [];
 
-            let timeout;
+           let timeout;
 
             function move(newIndex) {
+                console.log("move");
+                if(fullPage.style.display === 'block') {
+                    console.log("full screen not move");
+                    return
+                }
+                if(document.querySelector(`.slider${index} video`)?.playing){
+                    console.log("full screen video not move");
+                    return
+                }
+              
+
                 let animateLeft, slideLeft;
 
                 advance();
@@ -281,13 +297,9 @@ const mediaElements = document.querySelectorAll('img, video');
     
     mediaElements.forEach(mediaElement => {
         mediaElement.addEventListener('click', function () {
-            console.log(123123);
             if (mediaElement.tagName.toLowerCase() === 'video') {
-               mediaElement.setAttribute('controls', true)
-                // If it's a video, show full screen with controls
-                showFullScreenVideo(mediaElement);
+                
             } else {
-                console.log(123123);
                 // If it's an image, show full screen
                 showFullScreenImage(mediaElement.src);
             }
@@ -297,6 +309,7 @@ const mediaElements = document.querySelectorAll('img, video');
     fullPage.addEventListener('click', function () {
         closeFullScreen();
     });
+   
 }
 getImageCube()
 getText()

@@ -826,6 +826,7 @@
 }
 
 .slide_viewer {
+  z-index: 3;
   height: 540px;
   overflow: hidden;
   position: relative;
@@ -900,33 +901,45 @@ a.slide_btn {
 }
 
 .directional_nav {
+  z-index: 2;
   height: 50px;
   margin: 0 auto;
   max-width: 940px;
   position: relative;
   top: -265px;
 }
-
-.previous_btn {
+video {
+  position: absolute;
+  right: 0;
   bottom: 0;
-  left: 8px;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  background-size: cover;
+  overflow: hidden;
+}
+.previous_btn {
+  text-align:initial;
+  bottom: 0;
+  left: -25px;
   margin: auto;
   position: absolute;
   top: 0;
 }
-
 .next_btn {
+  text-align:initial;
   bottom: 0;
   margin: auto;
   position: absolute;
-  right: 18px;
+  right: -27px;
   top: 0;
 }
 
 .previous_btn, .next_btn {
   cursor: pointer;
   height: 25px;
-  opacity: 0.5;
+  opacity: 0.25;
   -webkit-transition: opacity 0.4s ease-in-out;
   -moz-transition: opacity 0.4s ease-in-out;
   -ms-transition: opacity 0.4s ease-in-out;
@@ -946,9 +959,25 @@ a.slide_btn {
   .next_btn {
     right: 50px;
   }
+
+
 }
 
+@media only screen and (max-width: 1101px) {
+  .previous_btn {
+    left: 50px;
+  }
+  .next_btn {
+    right: 50px;
+  }
+  #fullpage {
+    min-height: 113vh;
+  }
+}
+
+
 #fullpage {
+  min-width: 1100px;
   display: none;
   position: absolute;
   z-index: 999999;
