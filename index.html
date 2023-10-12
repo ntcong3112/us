@@ -3,6 +3,9 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&family=Dancing+Script:wght@400;700&family=IBM+Plex+Sans+Condensed:ital@1&family=Pacifico&family=Patrick+Hand&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="image/favicon.ico">
     <title>love story with Tryn</title>
     <link type="text/css" rel="stylesheet" href="./renxi/default.css">
@@ -10,8 +13,11 @@
     <meta property="og:image" content="./image/a.jpg" />
     <script type="text/javascript" src="./renxi/jquery.min.js"></script>
     <script type="text/javascript" src="./renxi/jscex.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+  <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
     <script type="text/javascript" src="./renxi/jscex-parser.js"></script>
     <script type="text/javascript" src="./renxi/jscex-jit.js"></script>
+    <script src='//cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js'></script>
     <script type="text/javascript" src="./renxi/jscex-builderbase.min.js"></script>
     <script type="text/javascript" src="./renxi/jscex-async.min.js"></script>
     <script type="text/javascript" src="./renxi/jscex-async-powerpack.min.js"></script>
@@ -22,11 +28,6 @@
     <script src="https://unpkg.com/dayjs@1.8.21/plugin/minMax.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.1/axios.min.js"></script>
     <style type="text/css">
-        <!--
-        .STYLE1 {
-            color: #666666
-        }
-        -->
     </style>
 </head>
 
@@ -50,7 +51,7 @@
             <div id="code">
                 <font color="#0000FF" id="tamsutuoihong"
                     style="font-family: 'MyFontFamily', cursive; color: #283a44;font-weight: bold">
-                  
+
                 </font>
             </div>
         </div>
@@ -58,7 +59,7 @@
         <div id="clock-box" onclick="changeDateTimeFormat()">
             <span class="STYLE1"></span>
             <font color="#FF0000"></font>
-            <span class="STYLE1"> Time of love...</span>
+            <span class="STYLE1 heading_title_mobile" style="font-size: 40px;"> Time of love...</span>
             <div id="clock"></div>
         </div>
         <canvas id="canvas" width="1100" height="680"></canvas>
@@ -66,48 +67,205 @@
     </div>
 
 
+
+    <div class="wrap2" style="margin-top: 150px;">
+        <div data-vc-full-width="true" data-vc-full-width-init="true"
+            class="vc_row wpb_row vc_row-fluid vc_custom_1542873226451 vc_row-has-fill wgl-row-animation"
+            style="left: -11.2px; box-sizing: border-box; width: 1100px; padding-left: 11.2px; padding-right: 10.8px; position: relative;">
+            <div
+                class="wpb_column vc_column_container vc_col-sm-12 vc_col-lg-offset-3 vc_col-lg-6 vc_col-md-offset-2 vc_col-md-8">
+                <div class="vc_column-inner ">
+                    <div class="wpb_wrapper">
+                        <div id="seofy_spacer_5cf90ca8186e1" class="seofy_module_spacing responsive_active">
+                            <div class="spacing_size spacing_size-initial" style="height:53px;"></div>
+                            <div class="spacing_size spacing_size-tablet" style="height:30px;"></div>
+                        </div>
+                        <div id="seofy_dbl_5cf90ca818809" class="seofy_module_double_headings acenter ">
+                            <div class="heading_title" style="font-size:36px; line-height:1.333; font-weight:800; ">
+                                <span class="heading_divider"></span>
+                                <div class="heading_title_mobile" style="font-size:32px; line-height: 1.333;">Tâm sự thầm kín </div>
+                            </div>
+                        </div>
+                        <div class="seofy_module_spacing">
+                            <div class="spacing_size spacing_size-initial" style="height:10px;"></div>
+                        </div>
+                        <div class="seofy_module_text" style="font-size:18px;line-height:30px;">
+                            <p><span class=" say " style="font-family: 'Dancing Script', cursive; font-size: 25px;">Nơi chủi nhau nhưng không muốn nói thẳng...</span><br></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+    </div>
     <div class="wrap1" style="margin-left: auto; margin-right: auto; width: 100%; min-width: 1100px;">
-        <div class="cube" id="cubebox">
-            <div class="out_front">
-                <img src="img/9.jpg" class="pic" />
+        
+        <div class="cube-wrap">
+            
+            <div class="cube" id="cubebox">
+                <div class="out_front">
+                    <img src="img/9.jpg" class="pic" />
+                </div>
+
+                <div class="out_back">
+                    <img src="img/2.jpg" class="pic" />
+                </div>
+
+                <div class="out_left">
+                    <img src="img/8.jpg" class="pic" />
+                </div>
+                <span class="in_front">
+                    <img src="img/7.jpg" class="in_pic" />
+                </span>
+                <span class="in_back">
+                    <img src="img/3.jpg" class="in_pic" />
+                </span>
+                <span class="in_left">
+                    <img src="img/1.jpg" class="in_pic" />
+                </span>
+                <span class="in_right">
+                    <img src="img/10.jpg" class="in_pic" />
+                </span>
+                <span class="in_top">
+                    <img src="img/11.jpg" class="in_pic" />
+                </span>
+                <span class="in_bottom">
+                    <img src="img/12.jpg" class="in_pic" />
+                </span>
+                <div class="out_right">
+                    <img src="img/4.jpg" class="pic" />
+                </div>
+                <div class="out_top">
+                    <img src="img/5.jpg" class="pic" />
+                </div>
+                <div class="out_bottom">
+                    <img src="img/6.jpg" class="pic" />
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="container-chat clearfix">
+            <div class="people-list" id="people-list">
+                <div class="search">
+                    <input type="text" placeholder="search" />
+                    <i class="fa fa-search"></i>
+                </div>
+                <ul class="list">
+                    <li class="clearfix">
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01.jpg"
+                            alt="avatar" />
+                        <div class="about">
+                            <div class="name">Augustine</div>
+                            <div class="status">
+                                <i class="fa fa-circle online"></i> online vĩnh viễn
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="clearfix">
+                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_02.jpg"
+                            alt="avatar" />
+                        <div class="about">
+                            <div class="name">Tryntryn</div>
+                            <div class="status">
+                                <i class="fa fa-circle online"></i> online vĩnh viễn
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
             </div>
 
-            <div class="out_back">
-                <img src="img/2.jpg" class="pic" />
-            </div>
+            <div class="chat">
+                <div class="chat-header clearfix">
+                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg"
+                        alt="avatar" />
 
-            <div class="out_left">
-                <img src="img/8.jpg" class="pic" />
-            </div>
-            <span class="in_front">
-                <img src="img/7.jpg" class="in_pic" />
-            </span>
-            <span class="in_back">
-                <img src="img/3.jpg" class="in_pic" />
-            </span>
-            <span class="in_left">
-                <img src="img/1.jpg" class="in_pic" />
-            </span>
-            <span class="in_right">
-                <img src="img/10.jpg" class="in_pic" />
-            </span>
-            <span class="in_top">
-                <img src="img/11.jpg" class="in_pic" />
-            </span>
-            <span class="in_bottom">
-                <img src="img/12.jpg" class="in_pic" />
-            </span>
-            <div class="out_right">
-                <img src="img/4.jpg" class="pic" />
-            </div>
-            <div class="out_top">
-                <img src="img/5.jpg" class="pic" />
-            </div>
-            <div class="out_bottom">
-                <img src="img/6.jpg" class="pic" />
-            </div>
+                    <div class="chat-about">
+                        <div class="chat-with">Tâm sự thầm kín</div>
+                        <div class="chat-num-messages"><i class="fa fa-circle online"></i>online vĩnh viễn</div>
+                    </div>
+                    <i class="fa fa-star"></i>
+                </div> <!-- end chat-header -->
 
-       
+                <div class="chat-history">
+                    <ul>
+                        <li class="clearfix">
+                            <div class="message-data align-right">
+                                <span class="message-data-time">10:10 AM, Today</span> &nbsp; &nbsp;
+                                <span class="message-data-name">Tryntryn</span> <i class="fa fa-circle me"></i>
+
+                            </div>
+                            <div class="message other-message float-right">
+                                Người yêu của em nè, anh tuyệt vời thật đấy!! 😚 Những điều này em đã ấp ủ từ lâu để thổ lộ với hi vọng anh sẽ hiểu tình cảm của em dành cho anh nhìu thế nào
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="message-data">
+                                <span class="message-data-name"><i class="fa fa-circle online"></i> Augustine</span>
+                                <span class="message-data-time">10:12 AM, Today</span>
+                            </div>
+                            <div class="message my-message">
+                                Người yêu của em nè, anh tuyệt vời thật đấy!! 😚 Những điều này em đã ấp ủ từ lâu để thổ lộ với hi vọng anh sẽ hiểu tình cảm của em dành cho anh nhìu thế nào
+                            </div>
+                        </li>
+
+                        <li class="clearfix">
+                            <div class="message-data align-right">
+                                <span class="message-data-time">10:14 AM, Today</span> &nbsp; &nbsp;
+                                <span class="message-data-name">Tryntryn</span> <i class="fa fa-circle me"></i>
+
+                            </div>
+                            <div class="message other-message float-right">
+                                Người yêu của em nè, anh tuyệt vời thật đấy!! 😚 Những điều này em đã ấp ủ từ lâu để thổ lộ với hi vọng anh sẽ hiểu tình cảm của em dành cho anh nhìu thế nào
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="message-data">
+                                <span class="message-data-name"><i class="fa fa-circle online"></i> Augustine</span>
+                                <span class="message-data-time">10:20 AM, Today</span>
+                            </div>
+                            <div class="message my-message">
+                                Người yêu của em nè, anh tuyệt vời thật đấy!! 😚 Những điều này em đã ấp ủ từ lâu để thổ lộ với hi vọng anh sẽ hiểu tình cảm của em dành cho anh nhìu thế nào
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="message-data">
+                                <span class="message-data-name"><i class="fa fa-circle online"></i> Augustine</span>
+                                <span class="message-data-time">10:31 AM, Today</span>
+                            </div>
+                            <i class="fa fa-circle online"></i>
+                            <i class="fa fa-circle online" style="color: #AED2A6"></i>
+                            <i class="fa fa-circle online" style="color:#DAE9DA"></i>
+                        </li>
+
+                    </ul>
+
+                </div> <!-- end chat-history -->
+
+                <div class="chat-message clearfix">
+                    <textarea name="message-to-send" id="message-to-send" placeholder="Nhắn gửi yêu thương ở đây..."
+                    onkeyup="textAreaAdjust(this)" style="overflow:auto"
+                        rows="3"></textarea>
+
+                    <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
+                    <i class="fa fa-file-image-o"></i>
+
+                    <button ><svg class="xsrhx6k" height="20px" viewBox="0 0 24 24" width="20px"><path style="background-color: #DAE9DA;" d="M16.6915026,12.4744748 L3.50612381,13.2599618 C3.19218622,13.2599618 3.03521743,13.4170592 3.03521743,13.5741566 L1.15159189,20.0151496 C0.8376543,20.8006365 0.99,21.89 1.77946707,22.52 C2.41,22.99 3.50612381,23.1 4.13399899,22.8429026 L21.714504,14.0454487 C22.6563168,13.5741566 23.1272231,12.6315722 22.9702544,11.6889879 C22.8132856,11.0605983 22.3423792,10.4322088 21.714504,10.118014 L4.13399899,1.16346272 C3.34915502,0.9 2.40734225,1.00636533 1.77946707,1.4776575 C0.994623095,2.10604706 0.8376543,3.0486314 1.15159189,3.99121575 L3.03521743,10.4322088 C3.03521743,10.5893061 3.34915502,10.7464035 3.50612381,10.7464035 L16.6915026,11.5318905 C16.6915026,11.5318905 17.1624089,11.5318905 17.1624089,12.0031827 C17.1624089,12.4744748 16.6915026,12.4744748 16.6915026,12.4744748 Z" fill="#f9005a" ></path></svg></button>
+
+                </div> <!-- end chat-message -->
+
+            </div> <!-- end chat -->
+
         </div>
     </div>
 
@@ -134,7 +292,7 @@
                             <div class="spacing_size spacing_size-initial" style="height:10px;"></div>
                         </div>
                         <div class="seofy_module_text" style="font-size:18px;line-height:30px;">
-                            <p "><span class=" say">Things we will never forget....</span><br></p>
+                            <p><span class=" say " style="font-family: 'Dancing Script', cursive; font-size: 25px;">Things we will never forget....</span><br></p>
                         </div>
                     </div>
                 </div>
@@ -161,7 +319,7 @@
                 style="top: 0%; left: 0%; transform: translateY(-50px); transition: transform 0s linear 0s; will-change: transform;"
                 data-paroller-direction="vertical" data-paroller-factor="-0.079"><img
                     src="https://seofy.wgl-demo.net/wp-content/uploads/2018/11/section_timeline2.png" alt=""></div>
-        
+
         </div>
 
 
@@ -174,7 +332,7 @@
     </script>
 
     <script defer>
-  
+
 
         var isFormat = true;
         function changeDateTimeFormat() {
@@ -348,9 +506,38 @@
     </div>
     <div id="fullpage" onclick="this.style.display='none';">
         <div id="closeBtn" onclick="closeFullScreen()">
-            
+
         </div>
     </div>
+
+
+
+    <script id="message-template" type="text/x-handlebars-template">
+  <li class="clearfix">
+    <div class="message-data align-right">
+      <span class="message-data-time" >{{time}}, Today</span> &nbsp; &nbsp;
+      <span class="message-data-name" >Tryntryn</span> <i class="fa fa-circle me"></i>
+    </div>
+    <div class="message other-message float-right">
+      {{messageOutput}}
+    </div>
+  </li>
+</script>
+
+    <script id="message-response-template" type="text/x-handlebars-template">
+  <li>
+    <div class="message-data">
+      <span class="message-data-name"><i class="fa fa-circle online"></i> Augustine</span>
+      <span class="message-data-time">{{time}}, Today</span>
+    </div>
+    <div class="message my-message">
+      {{response}}
+    </div>
+  </li>
+</script>
+
+    <script src='//cdnjs.cloudflare.com/ajax/libs/list.js/1.1.1/list.min.js'></script>
+    <script src="./chat.js"></script>
 </body>
 
 

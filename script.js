@@ -1,6 +1,13 @@
 var audio = document.getElementById("abcdef");
-  audio.volume = 0.3;
+audio.volume = 0.3;
 
+function textAreaAdjust(element) {
+    if (Number(element.style.height.replace('px', '')) <= 200) {
+        element.style.height = "1px";
+        element.style.height = (element.scrollHeight > 200 ? 200 : element.scrollHeight) + "px";
+    }
+
+}
 const fullPage = document.querySelector('#fullpage');
 const body = document.body;
 function showFullDetail(index) {
@@ -17,8 +24,8 @@ function showLessDetail(index) {
     const memory = data[index];
 
     // Truncate detail text if it's too long
-    const truncatedDetail = memory.attributes.Detail.length > 100
-        ? memory.attributes.Detail.substring(0, 100) + '...'
+    const truncatedDetail = memory.attributes.Detail.length > 200
+        ? memory.attributes.Detail.substring(0, 200) + '...'
         : memory.attributes.Detail;
 
     // Replace full detail with truncated detail and "See More" button
@@ -26,7 +33,7 @@ function showLessDetail(index) {
 }
 function showFullScreenVideo(source) {
     fullPage = source;
-    
+
     displayFullScreen();
 }
 function displayFullScreen() {
@@ -41,7 +48,7 @@ function showFullScreenImage(source) {
         <div style="background-image: url('${source}'); background-size: contain; background-repeat: no-repeat; background-position: center center; width: 100%; height: 100%;">
         <img style="z-index: 9999999;" id="closeBtn" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAA1klEQVR4nO2WWw6CMBBFZwsmkLiL/rh7cQd++EhwOccQx0QrmLYzoCG9CT+03HtoOzAiVVWRgAAcgEacBGyAPbBLmdzx0MkDYvBQr0FdKu1RHzhbICKv9BfCAaI4fMKgB7aSKKBVcNsqUgDhFl4CoeEXt/AciNnCJwJurxDRWNZ5MUMsFv5UFHjVC73XyhLiHeJjS9YNwC+3gJED9606Zg+X8TF/CBJKLfoE+5UjGXXuDkHBb9mtn8BgZIbA2kxYIHAIN0HwB01pUAjPtrxRz+DlWbUe3QF8yP/p2cX4sAAAAABJRU5ErkJggg==">
         </div>`;
-    
+
     displayFullScreen();
 }
 const getImageCube = async () => {
@@ -80,14 +87,14 @@ const getImage = async () => {
     totalPage = response.data.meta.pagination.pageCount
     data = [...data, ...response.data.data];
     console.log(data);
-    
+
     const display = data.map((memory, index) => {
         const color = colorList[Math.floor(Math.random() * colorList.length)];
-        const truncatedDetail = memory.attributes.Detail.length > 100
-            ? memory.attributes.Detail.substring(0, 100) + '...'
+        const truncatedDetail = memory.attributes.Detail.length > 200
+            ? memory.attributes.Detail.substring(0, 200) + '...'
             : memory.attributes.Detail;
 
-           
+
         return `
         <div id=${color.class} class="time_line-item item_show  ${index === 0 ? 'item_active' : ''}">
 <div class="time_line-date_wrap">
@@ -110,7 +117,7 @@ const getImage = async () => {
     <h5 style="margin-top:10px">(${dayjs(memory.attributes.StartDate).format('DD/MM/YYYY')}) </h5>
     <div class="time_line-descr">${truncatedDetail}
     ${memory.attributes.Detail.length > 100
-                ? `<br/> <span class="see-more" onclick="showFullDetail(${index})">Xem thêm nhìu iu thưn</span>`
+                ? `<br/> <span class="see-more" onclick="showFullDetail(${index})">Ấn để xem thêm nhìu iu thưn :></span>`
                 : ''}
 </div>
 
@@ -179,7 +186,7 @@ const getImage = async () => {
     element.innerHTML = display.join('')
     const currentIndex = data.map(d => 0)
     Object.defineProperty(HTMLMediaElement.prototype, 'playing', {
-        get: function(){
+        get: function () {
             return !!(this.currentTime > 0 && !this.paused && !this.ended && this.readyState > 2 && !this.full);
         }
     })
@@ -192,19 +199,19 @@ const getImage = async () => {
             console.log($slides)
             let bulletArray = [];
 
-           let timeout;
+            let timeout;
 
             function move(newIndex) {
                 console.log("move");
-                if(fullPage.style.display === 'block') {
+                if (fullPage.style.display === 'block') {
                     console.log("full screen not move");
                     return
                 }
-                if(document.querySelector(`.slider${index} video`)?.playing){
+                if (document.querySelector(`.slider${index} video`)?.playing) {
                     console.log("full screen video not move");
                     return
                 }
-              
+
 
                 let animateLeft, slideLeft;
 
@@ -292,24 +299,24 @@ const getImage = async () => {
     currentPage++;
 
 
- 
-const mediaElements = document.querySelectorAll('img, video');
-    
+
+    const mediaElements = document.querySelectorAll('img, video');
+
     mediaElements.forEach(mediaElement => {
         mediaElement.addEventListener('click', function () {
             if (mediaElement.tagName.toLowerCase() === 'video') {
-                
+
             } else {
                 // If it's an image, show full screen
                 showFullScreenImage(mediaElement.src);
             }
         });
     });
-    
+
     fullPage.addEventListener('click', function () {
         closeFullScreen();
     });
-   
+
 }
 getImageCube()
 getText()
