@@ -1204,7 +1204,9 @@ video {
   padding-left: 6px;
 }
 .chat .chat-history .message {
-  word-wrap: break-word;
+  display: inline-block;
+word-break: break-word;
+
   color: rgb(65, 63, 63);
   padding: 18px 20px;
   line-height: 26px;
@@ -1228,11 +1230,15 @@ video {
   margin-left: -10px;
 }
 .chat .chat-history .my-message {
-  word-wrap: break-word;
+  display: inline-block;
+word-break: break-word;
+
   background: #fbcffc;
 }
 .chat .chat-history .other-message {
-  word-wrap: break-word;
+  display: inline-block;
+  word-break: break-word;
+  
   background: linear-gradient(rgb(255, 13, 158), rgb(249, 0, 90));
   color: white;
 }
