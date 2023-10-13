@@ -1,6 +1,6 @@
 var audio = document.getElementById("abcdef");
 audio.volume = 0.3;
-
+converter = new showdown.Converter()
 function textAreaAdjust(element) {
     if (Number(element.style.height.replace('px', '')) <= 200) {
         element.style.height = "1px";
@@ -15,7 +15,7 @@ function showFullDetail(index) {
     const memory = data[index];
 
     // Replace truncated detail with full detail text
-    detailElement.innerHTML = `${memory.attributes.Detail} <br/> <br/> <span class="see-less" onclick="showLessDetail(${index})">Rút ngắn iu thưn :<</span>`;
+    detailElement.innerHTML = `${converter.makeHtml(memory.attributes.Detail)} <br/> <br/> <span class="see-less" onclick="showLessDetail(${index})">Rút ngắn iu thưn :<</span>`;
 }
 
 // Function to show truncated detail text when "See Less" is clicked
@@ -24,9 +24,11 @@ function showLessDetail(index) {
     const memory = data[index];
 
     // Truncate detail text if it's too long
-    const truncatedDetail = memory.attributes.Detail.length > 200
-        ? memory.attributes.Detail.substring(0, 200) + '...'
-        : memory.attributes.Detail;
+    const html = converter.makeHtml(memory.attributes.Detail);
+    const truncatedDetail = html.length > 200
+    ? html.substring(0, 200) + '...'
+    : html;
+    
 
     // Replace full detail with truncated detail and "See More" button
     detailElement.innerHTML = `${truncatedDetail} <br/> <br/> <span class="see-more" onclick="showFullDetail(${index})">Ấn để xem thêm nhìu iu thưn :></span>`;
@@ -90,10 +92,11 @@ const getImage = async () => {
 
     const display = data.map((memory, index) => {
         const color = colorList[Math.floor(Math.random() * colorList.length)];
-        const truncatedDetail = memory.attributes.Detail.length > 200
-            ? memory.attributes.Detail.substring(0, 200) + '...'
-            : memory.attributes.Detail;
-
+        const html = converter.makeHtml(memory.attributes.Detail);
+        const truncatedDetail = html.length > 200
+        ? html.substring(0, 200) + '...'
+        : html;
+          
 
         return `
         <div id=${color.class} class="time_line-item item_show  ${index === 0 ? 'item_active' : ''}">
@@ -300,7 +303,8 @@ const getImage = async () => {
 
 
 
-    const mediaElements = document.querySelectorAll('img, video');
+    const mediaElements = document.querySelectorAll('.wrap2 img, .wrap2 video');
+
 
     mediaElements.forEach(mediaElement => {
         mediaElement.addEventListener('click', function () {

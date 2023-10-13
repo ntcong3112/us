@@ -1202,6 +1202,7 @@ video {
   padding-left: 6px;
 }
 .chat .chat-history .message {
+  word-wrap: break-word;
   color: rgb(65, 63, 63);
   padding: 18px 20px;
   line-height: 26px;
