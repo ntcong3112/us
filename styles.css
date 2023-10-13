@@ -1145,6 +1145,8 @@ video {
 }
 
 .chat {
+  line-break: anywhere;
+  word-wrap: break-word;
   border-radius: 20px;
   width: 490px;
   float: left;
@@ -1226,9 +1228,11 @@ video {
   margin-left: -10px;
 }
 .chat .chat-history .my-message {
+  word-wrap: break-word;
   background: #fbcffc;
 }
 .chat .chat-history .other-message {
+  word-wrap: break-word;
   background: linear-gradient(rgb(255, 13, 158), rgb(249, 0, 90));
   color: white;
 }
