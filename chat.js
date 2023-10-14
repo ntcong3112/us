@@ -1,6 +1,6 @@
 
 converter = new showdown.Converter()
-let currentSender = 'TrynTryn'
+var currentSender = 'TrynTryn'
 function customDateFormat(createdAt) {
   const today = dayjs();
   const createdAtDate = dayjs(createdAt);
@@ -20,49 +20,60 @@ function customDateFormat(createdAt) {
   }
 }
 let loading = false
-$("#augustine").on('click',async function(){ 
+$("#augustine").on('click', async function () {
 
 
-  if(currentSender !== "Augustine" && loading === false){
+  if (currentSender !== "Augustine" && loading === false) {
     loading = true
-    currentSender="Augustine"
+    currentSender = "Augustine"
+    
     await renderChat()
   }
+  $("#people-list").hide()
+  loading = false
+});
 
-  loading=false
- });
+$("#tryntryn").click(async function () {
 
- $("#tryntryn").click(async function(){ 
-
-  if(currentSender !== "TrynTryn" && loading === false){
+  if (currentSender !== "TrynTryn" && loading === false) {
     loading = true
-    currentSender="TrynTryn"
+    currentSender = "TrynTryn"
+   
     await renderChat()
   }
-  loading=false
+  $("#people-list").hide()
+  loading = false
 
- });
+});
+$(".chat-header").click(async function () {
+  let div = $("#people-list");
+  if (div.css("display") === "block") {
+    div.hide();
+  } else {
+    div.show();
+  }
+});
 
 const renderChat = async () => {
   const response = await axios.get('https://memory.augustinenguyen.com/api/chats?sort=createdAt:asc')
   const chatHistory = response.data.data
   const chatHistoryMap = chatHistory.map(chat => {
     console.log(chat);
-    if(currentSender === 'TrynTryn'){
+    if (currentSender === 'TrynTryn') {
       if (chat.attributes.sender === 'TrynTryn') {
         return `<li class="clearfix">
           <div class="message-data align-right">
               <span class="message-data-time">${customDateFormat(chat.attributes.createdAt)}</span> &nbsp; &nbsp;
-              <span class="message-data-name">${chat.attributes.sender}</span> <i class="fa fa-circle me"></i>
+              <span class="message-data-name">${chat.attributes.sender}</span> <i class="fa fa-circle online"></i>
   
           </div>
           <div class="message other-message float-right">
               ${converter.makeHtml(chat.attributes.content)}
           </div>
       </li>`
-  
-  
-  
+
+
+
       } else {
         return `<li>
           <div class="message-data">
@@ -79,7 +90,7 @@ const renderChat = async () => {
       return `<li class="clearfix">
         <div class="message-data align-right">
             <span class="message-data-time">${customDateFormat(chat.attributes.createdAt)}</span> &nbsp; &nbsp;
-            <span class="message-data-name">${chat.attributes.sender}</span> <i class="fa fa-circle me"></i>
+            <span class="message-data-name">${chat.attributes.sender}</span> <i class="fa fa-circle online"></i>
 
         </div>
         <div class="message other-message float-right">
@@ -100,7 +111,7 @@ const renderChat = async () => {
         </div>
     </li>`
     }
-    
+
 
   })
   const element = document.getElementById('chat-list-history')
@@ -140,7 +151,8 @@ const renderChat = async () => {
         var template = Handlebars.compile($("#message-template").html());
         var context = {
           messageOutput: this.messageToSend,
-          time: this.getCurrentTime()
+          time: this.getCurrentTime(),
+          currentSender
         };
 
 

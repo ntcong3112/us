@@ -116,7 +116,7 @@
         </div>
 
         <div class="container-chat clearfix">
-            <div class="people-list" id="people-list">
+            <div class="people-list" id="people-list" >
                 <div class="search">
                     <input type="text" placeholder="search" />
                     <i class="fa fa-search"></i>
@@ -161,57 +161,7 @@
 
                 <div class="chat-history">
                     <ul id="chat-list-history">
-                        <li class="clearfix">
-                            <div class="message-data align-right">
-                                <span class="message-data-time">10:10 AM, Today</span> &nbsp; &nbsp;
-                                <span class="message-data-name">Tryntryn</span> <i class="fa fa-circle me"></i>
-
-                            </div>
-                            <div class="message other-message float-right">
-                                Người yêu của em nè, anh tuyệt vời thật đấy!! 😚 Những điều này em đã ấp ủ từ lâu để thổ lộ với hi vọng anh sẽ hiểu tình cảm của em dành cho anh nhìu thế nào
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="message-data">
-                                <span class="message-data-name"><i class="fa fa-circle online"></i> Augustine</span>
-                                <span class="message-data-time">10:12 AM, Today</span>
-                            </div>
-                            <div class="message my-message">
-                                Người yêu của em nè, anh tuyệt vời thật đấy!! 😚 Những điều này em đã ấp ủ từ lâu để thổ lộ với hi vọng anh sẽ hiểu tình cảm của em dành cho anh nhìu thế nào
-                            </div>
-                        </li>
-
-                        <li class="clearfix">
-                            <div class="message-data align-right">
-                                <span class="message-data-time">10:14 AM, Today</span> &nbsp; &nbsp;
-                                <span class="message-data-name">Tryntryn</span> <i class="fa fa-circle me"></i>
-
-                            </div>
-                            <div class="message other-message float-right">
-                                Người yêu của em nè, anh tuyệt vời thật đấy!! 😚 Những điều này em đã ấp ủ từ lâu để thổ lộ với hi vọng anh sẽ hiểu tình cảm của em dành cho anh nhìu thế nào
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="message-data">
-                                <span class="message-data-name"><i class="fa fa-circle online"></i> Augustine</span>
-                                <span class="message-data-time">10:20 AM, Today</span>
-                            </div>
-                            <div class="message my-message">
-                                Người yêu của em nè, anh tuyệt vời thật đấy!! 😚 Những điều này em đã ấp ủ từ lâu để thổ lộ với hi vọng anh sẽ hiểu tình cảm của em dành cho anh nhìu thế nào
-                            </div>
-                        </li>
-
-                        <li>
-                            <div class="message-data">
-                                <span class="message-data-name"><i class="fa fa-circle online"></i> Augustine</span>
-                                <span class="message-data-time">10:31 AM, Today</span>
-                            </div>
-                            <i class="fa fa-circle online"></i>
-                            <i class="fa fa-circle online" style="color: #AED2A6"></i>
-                            <i class="fa fa-circle online" style="color:#DAE9DA"></i>
-                        </li>
+                      
 
                     </ul>
 
@@ -480,8 +430,8 @@
     <script id="message-template" type="text/x-handlebars-template">
   <li class="clearfix">
     <div class="message-data align-right">
-      <span class="message-data-time" >{{time}}, Today</span> &nbsp; &nbsp;
-      <span class="message-data-name" >Tryntryn</span> <i class="fa fa-circle me"></i>
+      <span class="message-data-time" >{{time}}</span> &nbsp; &nbsp;
+      <span class="message-data-name" >{{currentSender}}</span> <i class="fa fa-circle online"></i>
     </div>
     <div class="message other-message float-right">
       {{messageOutput}}
@@ -492,8 +442,8 @@
     <script id="message-response-template" type="text/x-handlebars-template">
   <li>
     <div class="message-data">
-      <span class="message-data-name"><i class="fa fa-circle online"></i> Augustine</span>
-      <span class="message-data-time">{{time}}, Today</span>
+      <span class="message-data-name"><i class="fa fa-circle online"></i> {{currentSender}}</span>
+      <span class="message-data-time">{{time}}</span>
     </div>
     <div class="message my-message">
       {{response}}
