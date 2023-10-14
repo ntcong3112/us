@@ -38,30 +38,28 @@ function customDateFormat(createdAt) {
     return createdAtDate.format('DD MMM YYYY [at] HH:mm');
   }
 }
-let loading = false
+
 $("#augustine").on('click', async function () {
 
-
-  if (currentSender !== "Augustine" && loading === false) {
-    loading = true
+  console.log("123123");
+  if (currentSender !== "Augustine" ) {
     currentSender = "Augustine"
 
     await renderChat()
   }
   $("#people-list").hide()
-  loading = false
+
 });
 
 $("#tryntryn").click(async function () {
 
-  if (currentSender !== "TrynTryn" && loading === false) {
-    loading = true
+  if (currentSender !== "TrynTryn" ) {
     currentSender = "TrynTryn"
 
     await renderChat()
   }
   $("#people-list").hide()
-  loading = false
+
 
 });
 $(".chat-header").click(async function () {
@@ -228,7 +226,7 @@ const renderChat = async () => {
             }
 
           })
-
+          dataChat= [...dataChat, data.data.data]
         // responses
         // var templateResponse = Handlebars.compile( $("#message-response-template").html());
         // var contextResponse = { 
