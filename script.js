@@ -53,6 +53,7 @@ function showFullScreenImage(source) {
 
     displayFullScreen();
 }
+
 const getImageCube = async () => {
     const response = await axios.get('https://memory.augustinenguyen.com/api/cubes?populate=*')
     const data = response.data.data
@@ -77,7 +78,7 @@ const getText = async () => {
 
 let isLoading = false;
 let data = [];
-let currentPage = 0;
+let currentPage = 1;
 let totalPage = 0
 // Add event listener for infinite scroll
 
@@ -85,9 +86,9 @@ const colorList = [{ color: '#ffa705', class: "time_line_5cf90ca818f641" }, { co
 const getImage = async () => {
     if (isLoading) return;
     isLoading = true;
-    const response = await axios.get(`https://memory.augustinenguyen.com/api/memories?populate=*&sort=StartDate:desc&pagination[page]=${currentPage}&pagination[pageSize]=10`);
+    const response = await axios.get(`https://memory.augustinenguyen.com/api/memories?populate=*&sort=StartDate:desc&pagination[page]=${currentPage}&pagination[pageSize]=20`);
     totalPage = response.data.meta.pagination.pageCount
-    data = [...data, ...response.data.data];
+    data = [ ...response.data.data, ...data];
     console.log(data);
 
     const display = data.map((memory, index) => {
@@ -303,7 +304,7 @@ const getImage = async () => {
 
 
 
-    const mediaElements = document.querySelectorAll('.wrap2 img, .wrap2 video');
+    const mediaElements = document.querySelectorAll('.wrap2 img, .wrap2 video, .chat-history img, .chat-history video');
 
 
     mediaElements.forEach(mediaElement => {
@@ -326,7 +327,7 @@ getImageCube()
 getText()
 getImage()
 window.addEventListener('scroll', () => {
-    if (window.innerHeight + window.scrollY >= document.body.offsetHeight && currentPage < totalPage) {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight && currentPage <= totalPage) {
         // You may need to adjust the condition based on your specific layout
         getImage();
     }

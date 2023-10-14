@@ -1,6 +1,25 @@
 
 converter = new showdown.Converter()
 var currentSender = 'TrynTryn'
+let augustineName = ''
+let trynName = ''
+const getProfile = async () => {
+  const response = await axios.get('https://memory.augustinenguyen.com/api/chat-chit?populate=*')
+  const data = response.data.data
+  document.getElementById('avatar-augustine').innerHTML = `<img class="avatar-image" src="${data.attributes.Avatar_Cua_Anh.data.attributes.formats.small.url}"
+  alt="avatar" />`
+  document.getElementById('avatarSender').innerHTML = `<img class="avatar-image" src="${data.attributes.Avatar_Chat.data.attributes.formats.small.url}"
+  alt="avatar" />`
+  document.getElementById('avatar-tryn').innerHTML = `<img class="avatar-image" src="${data.attributes.Avatar_Cua_Em.data.attributes.formats.small.url}"
+  alt="avatar" />`
+  document.getElementById('name-augustine').innerText = data.attributes.Ten_Anh
+  augustineName = data.attributes.Ten_Anh
+  trynName = data.attributes.Ten_Em
+  document.getElementById('name-tryn').innerText = data.attributes.Ten_Em
+  document.getElementById('chat-with').innerText = data.attributes.Ten_Chat
+
+}
+getProfile()
 function customDateFormat(createdAt) {
   const today = dayjs();
   const createdAtDate = dayjs(createdAt);
@@ -26,7 +45,7 @@ $("#augustine").on('click', async function () {
   if (currentSender !== "Augustine" && loading === false) {
     loading = true
     currentSender = "Augustine"
-    
+
     await renderChat()
   }
   $("#people-list").hide()
@@ -38,7 +57,7 @@ $("#tryntryn").click(async function () {
   if (currentSender !== "TrynTryn" && loading === false) {
     loading = true
     currentSender = "TrynTryn"
-   
+
     await renderChat()
   }
   $("#people-list").hide()
@@ -53,18 +72,38 @@ $(".chat-header").click(async function () {
     div.show();
   }
 });
+$('#send-media-chat').click(function () { $('#imgupload').trigger('click'); });
+
+const loadMoreChat = () => {
+
+}
+let isLoadingChat = false;
+let dataChat = [];
+let currentPageChat = 1
+let totalPageChat = 0
+$('.chat-history').on('scroll', function () {
+  console.log($(this).scrollTop());
+  if ($(this).scrollTop() < 200 && currentPageChat <= totalPageChat) {
+    // User has scrolled to the top
+    renderChat();
+  }
+});
 
 const renderChat = async () => {
-  const response = await axios.get('https://memory.augustinenguyen.com/api/chats?sort=createdAt:asc')
-  const chatHistory = response.data.data
-  const chatHistoryMap = chatHistory.map(chat => {
+  if (isLoadingChat) return;
+  isLoadingChat = true;
+  const response = await axios.get(`https://memory.augustinenguyen.com/api/chats?sort=createdAt:desc&pagination[page]=${currentPageChat}&pagination[pageSize]=25`)
+  totalPageChat = response.data.meta.pagination.pageCount
+  const reverse = response.data.data.reverse()
+  dataChat = [...reverse,...dataChat  ]
+  const chatHistoryMap = dataChat.map(chat => {
     console.log(chat);
     if (currentSender === 'TrynTryn') {
       if (chat.attributes.sender === 'TrynTryn') {
         return `<li class="clearfix">
           <div class="message-data align-right">
               <span class="message-data-time">${customDateFormat(chat.attributes.createdAt)}</span> &nbsp; &nbsp;
-              <span class="message-data-name">${chat.attributes.sender}</span> <i class="fa fa-circle online"></i>
+              <span class="message-data-name">${chat.attributes.sender === 'TrynTryn' ? trynName : augustineName}</span> <i class="fa fa-circle online"></i>
   
           </div>
           <div class="message other-message float-right">
@@ -77,7 +116,7 @@ const renderChat = async () => {
       } else {
         return `<li>
           <div class="message-data">
-              <span class="message-data-name"><i class="fa fa-circle online"></i>${chat.attributes.sender}</span>
+              <span class="message-data-name"><i class="fa fa-circle online"></i>${chat.attributes.sender === 'TrynTryn' ? trynName : augustineName}</span>
               <span class="message-data-time">${customDateFormat(chat.attributes.createdAt)}</span>
           </div>
           <div class="message my-message">
@@ -90,7 +129,7 @@ const renderChat = async () => {
       return `<li class="clearfix">
         <div class="message-data align-right">
             <span class="message-data-time">${customDateFormat(chat.attributes.createdAt)}</span> &nbsp; &nbsp;
-            <span class="message-data-name">${chat.attributes.sender}</span> <i class="fa fa-circle online"></i>
+            <span class="message-data-name">${chat.attributes.sender === 'TrynTryn' ? trynName : augustineName}</span> <i class="fa fa-circle online"></i>
 
         </div>
         <div class="message other-message float-right">
@@ -103,7 +142,7 @@ const renderChat = async () => {
     } else {
       return `<li>
         <div class="message-data">
-            <span class="message-data-name"><i class="fa fa-circle online"></i>${chat.attributes.sender}</span>
+            <span class="message-data-name"><i class="fa fa-circle online"></i>${chat.attributes.sender === 'TrynTryn' ? trynName : augustineName}</span>
             <span class="message-data-time">${customDateFormat(chat.attributes.createdAt)}</span>
         </div>
         <div class="message my-message">
@@ -113,9 +152,31 @@ const renderChat = async () => {
     }
 
 
+
+
   })
   const element = document.getElementById('chat-list-history')
   element.innerHTML = `${chatHistoryMap.join('')}`
+  const mediaElements = document.querySelectorAll(' .chat-history img, .chat-history video');
+
+
+  mediaElements.forEach(mediaElement => {
+    mediaElement.addEventListener('click', function () {
+      if (mediaElement.tagName.toLowerCase() === 'video') {
+
+      } else {
+        // If it's an image, show full screen
+        showFullScreenImage(mediaElement.src);
+      }
+    });
+  });
+
+  fullPage.addEventListener('click', function () {
+    closeFullScreen();
+  });
+
+  isLoadingChat = false
+  currentPageChat++
 }
 (async function () {
   await renderChat()
@@ -152,7 +213,7 @@ const renderChat = async () => {
         var context = {
           messageOutput: this.messageToSend,
           time: this.getCurrentTime(),
-          currentSender
+          currentSender: currentSender === 'TrynTryn' ? trynName : augustineName
         };
 
 
