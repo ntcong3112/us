@@ -1,7 +1,7 @@
 var audio = document.getElementById("abcdef");
 audio.volume = 0.3;
 converter = new showdown.Converter()
-function textAreaAdjust(element) {
+async function textAreaAdjust(element) {
     if (Number(element.style.height.replace('px', '')) <= 200) {
         element.style.height = "1px";
         element.style.height = (element.scrollHeight > 200 ? 200 : element.scrollHeight) + "px";

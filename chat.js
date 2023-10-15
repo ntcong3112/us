@@ -3,6 +3,9 @@ converter = new showdown.Converter()
 var currentSender = 'TrynTryn'
 let augustineName = ''
 let trynName = ''
+
+
+  
 const getProfile = async () => {
   const response = await axios.get('https://memory.augustinenguyen.com/api/chat-chit?populate=*')
   const data = response.data.data
@@ -38,10 +41,23 @@ function customDateFormat(createdAt) {
     return createdAtDate.format('DD MMM YYYY [at] HH:mm');
   }
 }
+$("#open-emoji-box").on('click', async function () {
+  let div = $("#emoji-box");
+  if (div.css("display") === "block") {
+    div.hide();
+  } else {
+    div.show();
+  }
+
+});
+
+$(".chat-history, #message-to-send").on('click', async function () {
+  $("#emoji-box").hide()
+
+});
 
 $("#augustine").on('click', async function () {
 
-  console.log("123123");
   if (currentSender !== "Augustine" ) {
     currentSender = "Augustine"
 
@@ -177,6 +193,8 @@ const renderChat = async () => {
   currentPageChat++
 }
 (async function () {
+  
+ 
   await renderChat()
   var chat = {
     messageToSend: '',
@@ -190,10 +208,18 @@ const renderChat = async () => {
 
     ],
     init: function () {
+    
       this.cacheDOM();
+      const handleOnEmojiSelect= (data) => {
+        this.$textarea.val(this.$textarea.val() + data.native)
+      }
+      const pickerOptions = { onEmojiSelect: handleOnEmojiSelect }
+      const picker = new EmojiMart.Picker(pickerOptions)
+      $('#emoji-box').append(picker)
       this.bindEvents();
       this.render();
     },
+    
     cacheDOM: function () {
       this.$chatHistory = $('.chat-history');
       this.$button = $('button');
@@ -250,6 +276,8 @@ const renderChat = async () => {
     addMessageEnter: function (event) {
       // enter was pressed
       if (event.keyCode === 13) {
+        document.getElementById("message-to-send").style.height = "32px";
+        // $("#message-to-send").css('height', "32px")
         this.addMessage();
       }
     },
