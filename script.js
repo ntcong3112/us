@@ -89,7 +89,6 @@ const getImage = async () => {
     const response = await axios.get(`https://memory.augustinenguyen.com/api/memories?populate=*&sort=StartDate:desc&pagination[page]=${currentPage}&pagination[pageSize]=20`);
     totalPage = response.data.meta.pagination.pageCount
     data = [ ...response.data.data, ...data];
-    console.log(data);
 
     const display = data.map((memory, index) => {
         const color = colorList[Math.floor(Math.random() * colorList.length)];
@@ -198,21 +197,16 @@ const getImage = async () => {
         $(`.slider${index}`).each(function () {
             let $this = $(this);
             let $group = $this.find(`.slide_group${index}`);
-            console.log($group)
             let $slides = $this.find(`.slide${index}`);
-            console.log($slides)
             let bulletArray = [];
 
             let timeout;
 
             function move(newIndex) {
-                console.log("move");
                 if (fullPage.style.display === 'block') {
-                    console.log("full screen not move");
                     return
                 }
                 if (document.querySelector(`.slider${index} video`)?.playing) {
-                    console.log("full screen video not move");
                     return
                 }
 
@@ -293,7 +287,6 @@ const getImage = async () => {
                 }).appendTo(`.slide_buttons${index}`);
 
                 bulletArray.push($button);
-                console.log(bulletArray)
             });
 
             advance();

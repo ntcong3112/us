@@ -62,6 +62,8 @@ $("#augustine").on('click', async function () {
     currentSender = "Augustine"
 
     await renderChat()
+    const c =  $('#chat-ht')
+    c[0].scrollTop = c[0].scrollHeight
   }
   $("#people-list").hide()
 
@@ -73,6 +75,8 @@ $("#tryntryn").click(async function () {
     currentSender = "TrynTryn"
 
     await renderChat()
+    const c =  $('#chat-ht')
+    c[0].scrollTop = c[0].scrollHeight
   }
   $("#people-list").hide()
 
@@ -96,7 +100,6 @@ let dataChat = [];
 let currentPageChat = 1
 let totalPageChat = 0
 $('.chat-history').on('scroll', function () {
-  console.log($(this).scrollTop());
   if ($(this).scrollTop() < 200 && currentPageChat <= totalPageChat) {
     // User has scrolled to the top
     renderChat();
@@ -106,12 +109,11 @@ $('.chat-history').on('scroll', function () {
 const renderChat = async () => {
   if (isLoadingChat) return;
   isLoadingChat = true;
-  const response = await axios.get(`https://memory.augustinenguyen.com/api/chats?sort=createdAt:desc&pagination[page]=${currentPageChat}&pagination[pageSize]=25`)
+  const response = await axios.get(`https://memory.augustinenguyen.com/api/chats?sort=createdAt:desc&pagination[page]=${currentPageChat}&pagination[pageSize]=15`)
   totalPageChat = response.data.meta.pagination.pageCount
   const reverse = response.data.data.reverse()
   dataChat = [...reverse,...dataChat  ]
   const chatHistoryMap = dataChat.map(chat => {
-    console.log(chat);
     if (currentSender === 'TrynTryn') {
       if (chat.attributes.sender === 'TrynTryn') {
         return `<li class="clearfix">
@@ -194,7 +196,7 @@ const renderChat = async () => {
 }
 (async function () {
   
- 
+  const c =  $('#chat-ht')
   await renderChat()
   var chat = {
     messageToSend: '',
@@ -242,7 +244,7 @@ const renderChat = async () => {
 
 
         this.$chatHistoryList.append(template(context));
-        this.scrollToBottom();
+        c[0].scrollTop = c[0].scrollHeight
         this.$textarea.val('');
         const data =
           await axios.post('https://memory.augustinenguyen.com/api/chats', {
@@ -253,6 +255,7 @@ const renderChat = async () => {
 
           })
           dataChat= [...dataChat, data.data.data]
+      
         // responses
         // var templateResponse = Handlebars.compile( $("#message-response-template").html());
         // var contextResponse = { 
@@ -265,7 +268,7 @@ const renderChat = async () => {
         //   this.scrollToBottom();
         // }.bind(this), 1500);
 
-      }
+      }     
 
     },
 
@@ -295,7 +298,13 @@ const renderChat = async () => {
   };
 
   chat.init();
-
+  const images = [...document.querySelectorAll("#chat-ht img")];
+  const proms=images.map(im=>new Promise(res=>
+  im.onload=()=>res([im.width,im.height])
+  ))
+  await Promise.all(proms).then(data=>{
+    c[0].scrollTop = c[0].scrollHeight
+  })
   var searchFilter = {
     options: { valueNames: ['name'] },
     init: function () {
