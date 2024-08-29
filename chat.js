@@ -233,7 +233,6 @@ const renderChat = async () => {
       this.$textarea.on('keyup', this.addMessageEnter.bind(this));
     },
     render: async function () {
-      this.scrollToBottom();
       if (this.messageToSend.trim() !== '') {
         var template = Handlebars.compile($("#message-template").html());
         var context = {
@@ -269,6 +268,7 @@ const renderChat = async () => {
         // }.bind(this), 1500);
 
       }     
+      this.scrollToBottom();
 
     },
 
