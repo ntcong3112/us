@@ -285,7 +285,7 @@ const renderChat = async () => {
       }
     },
     scrollToBottom: function () {
-      this.$chatHistory.scrollTop(this.$chatHistory[0].scrollHeight);
+      this.$chatHistory.scrollTop = this.$chatHistory[0].scrollHeight;
     },
     getCurrentTime: function () {
       return new Date().toLocaleTimeString().
